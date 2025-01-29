@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "about": {
+    "version": "",
+    "description": "export of environment 'Demo'"
+  },
+  "services": null,
+  "scoped_variables": null,
+  "containers": {
+    "demo-api": {
+      "name": "demo-api",
+      "image": {
+        "name": "datbassieatwork/demo-api:latest",
+        "origin": {
+          "type": "docker-hub",
+          "details": {
+            "existing": {
+              "source_id": "6799f801c674921336a17398"
+            }
+          }
+        }
+      },
+      "stateful": false,
+      "config": {
+        "network": {
+          "public": "disable",
+          "hostname": "demo-api-internal"
+        },
+        "deploy": {
+          "instances": 1,
+          "constraints": {
+            "node": {
+              "tags": {}
+            }
+          }
+        },
+        "integrations": {}
+      }
+    },
+    "demo-frontend-deploy": {
+      "name": "demo-frontend-deploy",
+      "image": {
+        "name": "datbassieatwork/demo-frontend:latest",
+        "origin": {
+          "type": "docker-hub",
+          "details": {
+            "existing": {
+              "source_id": "679a228fc674921336a173b2"
+            }
+          }
+        }
+      },
+      "stateful": false,
+      "config": {
+        "network": {
+          "public": "enable",
+          "hostname": "demo-frontend",
+          "ports": [
+            "80:5173",
+            "443:5173"
+          ]
+        },
+        "deploy": {
+          "instances": 1,
+          "constraints": {
+            "node": {
+              "tags": {}
+            }
+          }
+        },
+        "integrations": {}
+      }
+    }
+  },
+  "annotations": {
+    "description": "Demoing"
+  }
+}
